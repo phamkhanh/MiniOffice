@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MOfficeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CanBo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoQuan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="Huyen" Type="int" />
+          <Property Name="Tinh" Type="int" />
+          <Property Name="Xa" Type="int" />
+          <Property Name="Khac" Type="int" />
+        </EntityType>
+        <EntityType Name="LoaiTrichYeu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrichYeu" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoaiVanBan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="KyHieu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+          <Property Name="CheckIn" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserRef" Type="int" Nullable="false" />
+          <Property Name="LogContent" Type="ntext" />
+          <Property Name="LogDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VanBanDenHuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoaiVanBanId" Type="int" Nullable="false" />
+          <Property Name="NgayDen" Type="date" />
+          <Property Name="SoDen" Type="int" />
+          <Property Name="CoQuanId" Type="int" Nullable="false" />
+          <Property Name="SoKyHieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayBanHanh" Type="date" />
+          <Property Name="TrichYeu" Type="ntext" />
+          <Property Name="NguoiNhan" Type="nvarchar" MaxLength="100" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="250" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="VanBanDenTinh">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoaiVanBanId" Type="int" Nullable="false" />
+          <Property Name="NgayDen" Type="date" />
+          <Property Name="SoDen" Type="int" />
+          <Property Name="CoQuanId" Type="int" Nullable="false" />
+          <Property Name="SoKyHieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayBanHanh" Type="date" />
+          <Property Name="TrichYeu" Type="ntext" />
+          <Property Name="NguoiNhan" Type="nvarchar" MaxLength="100" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="250" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="VanBanDi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoaiVanBanId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="CoQuanId" Type="int" />
+          <Property Name="SoDi" Type="int" />
+          <Property Name="SoKyHieu" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayBanHanh" Type="date" />
+          <Property Name="TrichYeu" Type="ntext" />
+          <Property Name="NguoiKy" Type="nvarchar" MaxLength="100" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="250" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Path" Type="nvarchar" MaxLength="250" />
+          <Property Name="Mix" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <Association Name="FK_UserLog_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserLog" Type="Self.UserLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLog">
+              <PropertyRef Name="UserRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenHuyen_CoQuan">
+          <End Role="CoQuan" Type="Self.CoQuan" Multiplicity="1" />
+          <End Role="VanBanDenHuyen" Type="Self.VanBanDenHuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoQuan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenHuyen">
+              <PropertyRef Name="CoQuanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenHuyen_LoaiVanBan">
+          <End Role="LoaiVanBan" Type="Self.LoaiVanBan" Multiplicity="1" />
+          <End Role="VanBanDenHuyen" Type="Self.VanBanDenHuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiVanBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenHuyen">
+              <PropertyRef Name="LoaiVanBanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenHuyen_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="VanBanDenHuyen" Type="Self.VanBanDenHuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenHuyen">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenTinh_CoQuan">
+          <End Role="CoQuan" Type="Self.CoQuan" Multiplicity="1" />
+          <End Role="VanBanDenTinh" Type="Self.VanBanDenTinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoQuan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenTinh">
+              <PropertyRef Name="CoQuanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenTinh_LoaiVanBan">
+          <End Role="LoaiVanBan" Type="Self.LoaiVanBan" Multiplicity="1" />
+          <End Role="VanBanDenTinh" Type="Self.VanBanDenTinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiVanBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenTinh">
+              <PropertyRef Name="LoaiVanBanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenTinh_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="VanBanDenTinh" Type="Self.VanBanDenTinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenTinh">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDi_CoQuan">
+          <End Role="CoQuan" Type="Self.CoQuan" Multiplicity="0..1" />
+          <End Role="VanBanDi" Type="Self.VanBanDi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoQuan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDi">
+              <PropertyRef Name="CoQuanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDi_LoaiVanBan">
+          <End Role="LoaiVanBan" Type="Self.LoaiVanBan" Multiplicity="0..1" />
+          <End Role="VanBanDi" Type="Self.VanBanDi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiVanBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDi">
+              <PropertyRef Name="LoaiVanBanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDi_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="VanBanDi" Type="Self.VanBanDi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDi">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MOfficeModelStoreContainer">
+          <EntitySet Name="CanBo" EntityType="Self.CanBo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoQuan" EntityType="Self.CoQuan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiTrichYeu" EntityType="Self.LoaiTrichYeu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiVanBan" EntityType="Self.LoaiVanBan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLog" EntityType="Self.UserLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VanBanDenHuyen" EntityType="Self.VanBanDenHuyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VanBanDenTinh" EntityType="Self.VanBanDenTinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VanBanDi" EntityType="Self.VanBanDi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserLog_User" Association="Self.FK_UserLog_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserLog" EntitySet="UserLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenHuyen_CoQuan" Association="Self.FK_VanBanDenHuyen_CoQuan">
+            <End Role="CoQuan" EntitySet="CoQuan" />
+            <End Role="VanBanDenHuyen" EntitySet="VanBanDenHuyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenHuyen_LoaiVanBan" Association="Self.FK_VanBanDenHuyen_LoaiVanBan">
+            <End Role="LoaiVanBan" EntitySet="LoaiVanBan" />
+            <End Role="VanBanDenHuyen" EntitySet="VanBanDenHuyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenHuyen_User" Association="Self.FK_VanBanDenHuyen_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="VanBanDenHuyen" EntitySet="VanBanDenHuyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenTinh_CoQuan" Association="Self.FK_VanBanDenTinh_CoQuan">
+            <End Role="CoQuan" EntitySet="CoQuan" />
+            <End Role="VanBanDenTinh" EntitySet="VanBanDenTinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenTinh_LoaiVanBan" Association="Self.FK_VanBanDenTinh_LoaiVanBan">
+            <End Role="LoaiVanBan" EntitySet="LoaiVanBan" />
+            <End Role="VanBanDenTinh" EntitySet="VanBanDenTinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenTinh_User" Association="Self.FK_VanBanDenTinh_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="VanBanDenTinh" EntitySet="VanBanDenTinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDi_CoQuan" Association="Self.FK_VanBanDi_CoQuan">
+            <End Role="CoQuan" EntitySet="CoQuan" />
+            <End Role="VanBanDi" EntitySet="VanBanDi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDi_LoaiVanBan" Association="Self.FK_VanBanDi_LoaiVanBan">
+            <End Role="LoaiVanBan" EntitySet="LoaiVanBan" />
+            <End Role="VanBanDi" EntitySet="VanBanDi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDi_User" Association="Self.FK_VanBanDi_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="VanBanDi" EntitySet="VanBanDi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MOfficeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MOfficeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CoQuans" EntityType="MOfficeModel.CoQuan" />
+          <EntitySet Name="LoaiVanBans" EntityType="MOfficeModel.LoaiVanBan" />
+          <EntitySet Name="Users" EntityType="MOfficeModel.User" />
+          <EntitySet Name="UserLogs" EntityType="MOfficeModel.UserLog" />
+          <EntitySet Name="VanBanDis" EntityType="MOfficeModel.VanBanDi" />
+          <AssociationSet Name="FK_VanBanDi_CoQuan" Association="MOfficeModel.FK_VanBanDi_CoQuan">
+            <End Role="CoQuan" EntitySet="CoQuans" />
+            <End Role="VanBanDi" EntitySet="VanBanDis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDi_LoaiVanBan" Association="MOfficeModel.FK_VanBanDi_LoaiVanBan">
+            <End Role="LoaiVanBan" EntitySet="LoaiVanBans" />
+            <End Role="VanBanDi" EntitySet="VanBanDis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLog_User" Association="MOfficeModel.FK_UserLog_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserLog" EntitySet="UserLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDi_User" Association="MOfficeModel.FK_VanBanDi_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="VanBanDi" EntitySet="VanBanDis" />
+          </AssociationSet>
+          <EntitySet Name="VanBanDenHuyens" EntityType="MOfficeModel.VanBanDenHuyen" />
+          <AssociationSet Name="FK_VanBanDenHuyen_CoQuan" Association="MOfficeModel.FK_VanBanDenHuyen_CoQuan">
+            <End Role="CoQuan" EntitySet="CoQuans" />
+            <End Role="VanBanDenHuyen" EntitySet="VanBanDenHuyens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenHuyen_LoaiVanBan" Association="MOfficeModel.FK_VanBanDenHuyen_LoaiVanBan">
+            <End Role="LoaiVanBan" EntitySet="LoaiVanBans" />
+            <End Role="VanBanDenHuyen" EntitySet="VanBanDenHuyens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenHuyen_User" Association="MOfficeModel.FK_VanBanDenHuyen_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="VanBanDenHuyen" EntitySet="VanBanDenHuyens" />
+          </AssociationSet>
+          <EntitySet Name="VanBanDenTinhs" EntityType="MOfficeModel.VanBanDenTinh" />
+          <AssociationSet Name="FK_VanBanDenTinh_CoQuan" Association="MOfficeModel.FK_VanBanDenTinh_CoQuan">
+            <End Role="CoQuan" EntitySet="CoQuans" />
+            <End Role="VanBanDenTinh" EntitySet="VanBanDenTinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenTinh_LoaiVanBan" Association="MOfficeModel.FK_VanBanDenTinh_LoaiVanBan">
+            <End Role="LoaiVanBan" EntitySet="LoaiVanBans" />
+            <End Role="VanBanDenTinh" EntitySet="VanBanDenTinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VanBanDenTinh_User" Association="MOfficeModel.FK_VanBanDenTinh_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="VanBanDenTinh" EntitySet="VanBanDenTinhs" />
+          </AssociationSet>
+          <EntitySet Name="LoaiTrichYeus" EntityType="MOfficeModel.LoaiTrichYeu" />
+          <EntitySet Name="CanBoes" EntityType="MOfficeModel.CanBo" />
+          </EntityContainer>
+        <EntityType Name="CoQuan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VanBanDis" Relationship="MOfficeModel.FK_VanBanDi_CoQuan" FromRole="CoQuan" ToRole="VanBanDi" />
+          <Property Name="Huyen" Type="Int32" />
+          <Property Name="Tinh" Type="Int32" />
+          <Property Name="Xa" Type="Int32" />
+          <Property Name="Khac" Type="Int32" />
+          <NavigationProperty Name="VanBanDenHuyens" Relationship="MOfficeModel.FK_VanBanDenHuyen_CoQuan" FromRole="CoQuan" ToRole="VanBanDenHuyen" />
+          <NavigationProperty Name="VanBanDenTinhs" Relationship="MOfficeModel.FK_VanBanDenTinh_CoQuan" FromRole="CoQuan" ToRole="VanBanDenTinh" />
+        </EntityType>
+        <EntityType Name="LoaiVanBan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VanBanDis" Relationship="MOfficeModel.FK_VanBanDi_LoaiVanBan" FromRole="LoaiVanBan" ToRole="VanBanDi" />
+          <NavigationProperty Name="VanBanDenHuyens" Relationship="MOfficeModel.FK_VanBanDenHuyen_LoaiVanBan" FromRole="LoaiVanBan" ToRole="VanBanDenHuyen" />
+          <NavigationProperty Name="VanBanDenTinhs" Relationship="MOfficeModel.FK_VanBanDenTinh_LoaiVanBan" FromRole="LoaiVanBan" ToRole="VanBanDenTinh" />
+          <Property Name="KyHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserLogs" Relationship="MOfficeModel.FK_UserLog_User" FromRole="User" ToRole="UserLog" />
+          <NavigationProperty Name="VanBanDis" Relationship="MOfficeModel.FK_VanBanDi_User" FromRole="User" ToRole="VanBanDi" />
+          <Property Name="CheckIn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VanBanDenHuyens" Relationship="MOfficeModel.FK_VanBanDenHuyen_User" FromRole="User" ToRole="VanBanDenHuyen" />
+          <NavigationProperty Name="VanBanDenTinhs" Relationship="MOfficeModel.FK_VanBanDenTinh_User" FromRole="User" ToRole="VanBanDenTinh" />
+        </EntityType>
+        <EntityType Name="UserLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserRef" Type="Int32" Nullable="false" />
+          <Property Name="LogContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="MOfficeModel.FK_UserLog_User" FromRole="UserLog" ToRole="User" />
+        </EntityType>
+        <EntityType Name="VanBanDi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoaiVanBanId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="CoQuanId" Type="Int32" />
+          <Property Name="SoDi" Type="Int32" />
+          <Property Name="SoKyHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBanHanh" Type="DateTime" Precision="0" />
+          <Property Name="TrichYeu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiKy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CoQuan" Relationship="MOfficeModel.FK_VanBanDi_CoQuan" FromRole="VanBanDi" ToRole="CoQuan" />
+          <NavigationProperty Name="LoaiVanBan" Relationship="MOfficeModel.FK_VanBanDi_LoaiVanBan" FromRole="VanBanDi" ToRole="LoaiVanBan" />
+          <NavigationProperty Name="User" Relationship="MOfficeModel.FK_VanBanDi_User" FromRole="VanBanDi" ToRole="User" />
+          <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Mix" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_VanBanDi_CoQuan">
+          <End Type="MOfficeModel.CoQuan" Role="CoQuan" Multiplicity="0..1" />
+          <End Type="MOfficeModel.VanBanDi" Role="VanBanDi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoQuan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDi">
+              <PropertyRef Name="CoQuanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDi_LoaiVanBan">
+          <End Type="MOfficeModel.LoaiVanBan" Role="LoaiVanBan" Multiplicity="0..1" />
+          <End Type="MOfficeModel.VanBanDi" Role="VanBanDi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiVanBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDi">
+              <PropertyRef Name="LoaiVanBanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLog_User">
+          <End Type="MOfficeModel.User" Role="User" Multiplicity="1" />
+          <End Type="MOfficeModel.UserLog" Role="UserLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLog">
+              <PropertyRef Name="UserRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDi_User">
+          <End Type="MOfficeModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MOfficeModel.VanBanDi" Role="VanBanDi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDi">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VanBanDenHuyen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoaiVanBanId" Type="Int32" Nullable="false" />
+          <Property Name="NgayDen" Type="DateTime" Precision="0" />
+          <Property Name="SoDen" Type="Int32" />
+          <Property Name="CoQuanId" Type="Int32" Nullable="false" />
+          <Property Name="SoKyHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBanHanh" Type="DateTime" Precision="0" />
+          <Property Name="TrichYeu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CoQuan" Relationship="MOfficeModel.FK_VanBanDenHuyen_CoQuan" FromRole="VanBanDenHuyen" ToRole="CoQuan" />
+          <NavigationProperty Name="LoaiVanBan" Relationship="MOfficeModel.FK_VanBanDenHuyen_LoaiVanBan" FromRole="VanBanDenHuyen" ToRole="LoaiVanBan" />
+          <NavigationProperty Name="User" Relationship="MOfficeModel.FK_VanBanDenHuyen_User" FromRole="VanBanDenHuyen" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_VanBanDenHuyen_CoQuan">
+          <End Type="MOfficeModel.CoQuan" Role="CoQuan" Multiplicity="1" />
+          <End Type="MOfficeModel.VanBanDenHuyen" Role="VanBanDenHuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoQuan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenHuyen">
+              <PropertyRef Name="CoQuanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenHuyen_LoaiVanBan">
+          <End Type="MOfficeModel.LoaiVanBan" Role="LoaiVanBan" Multiplicity="1" />
+          <End Type="MOfficeModel.VanBanDenHuyen" Role="VanBanDenHuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiVanBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenHuyen">
+              <PropertyRef Name="LoaiVanBanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenHuyen_User">
+          <End Type="MOfficeModel.User" Role="User" Multiplicity="1" />
+          <End Type="MOfficeModel.VanBanDenHuyen" Role="VanBanDenHuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenHuyen">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VanBanDenTinh">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoaiVanBanId" Type="Int32" Nullable="false" />
+          <Property Name="NgayDen" Type="DateTime" Precision="0" />
+          <Property Name="SoDen" Type="Int32" />
+          <Property Name="CoQuanId" Type="Int32" Nullable="false" />
+          <Property Name="SoKyHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBanHanh" Type="DateTime" Precision="0" />
+          <Property Name="TrichYeu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CoQuan" Relationship="MOfficeModel.FK_VanBanDenTinh_CoQuan" FromRole="VanBanDenTinh" ToRole="CoQuan" />
+          <NavigationProperty Name="LoaiVanBan" Relationship="MOfficeModel.FK_VanBanDenTinh_LoaiVanBan" FromRole="VanBanDenTinh" ToRole="LoaiVanBan" />
+          <NavigationProperty Name="User" Relationship="MOfficeModel.FK_VanBanDenTinh_User" FromRole="VanBanDenTinh" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_VanBanDenTinh_CoQuan">
+          <End Type="MOfficeModel.CoQuan" Role="CoQuan" Multiplicity="1" />
+          <End Type="MOfficeModel.VanBanDenTinh" Role="VanBanDenTinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoQuan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenTinh">
+              <PropertyRef Name="CoQuanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenTinh_LoaiVanBan">
+          <End Type="MOfficeModel.LoaiVanBan" Role="LoaiVanBan" Multiplicity="1" />
+          <End Type="MOfficeModel.VanBanDenTinh" Role="VanBanDenTinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiVanBan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenTinh">
+              <PropertyRef Name="LoaiVanBanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VanBanDenTinh_User">
+          <End Type="MOfficeModel.User" Role="User" Multiplicity="1" />
+          <End Type="MOfficeModel.VanBanDenTinh" Role="VanBanDenTinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VanBanDenTinh">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LoaiTrichYeu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrichYeu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CanBo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DonVi" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MOfficeModelStoreContainer" CdmEntityContainer="MOfficeEntities">
+          <EntitySetMapping Name="CoQuans">
+            <EntityTypeMapping TypeName="MOfficeModel.CoQuan">
+              <MappingFragment StoreEntitySet="CoQuan">
+                <ScalarProperty Name="Khac" ColumnName="Khac" />
+                <ScalarProperty Name="Xa" ColumnName="Xa" />
+                <ScalarProperty Name="Tinh" ColumnName="Tinh" />
+                <ScalarProperty Name="Huyen" ColumnName="Huyen" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiVanBans">
+            <EntityTypeMapping TypeName="MOfficeModel.LoaiVanBan">
+              <MappingFragment StoreEntitySet="LoaiVanBan">
+                <ScalarProperty Name="KyHieu" ColumnName="KyHieu" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MOfficeModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogs">
+            <EntityTypeMapping TypeName="MOfficeModel.UserLog">
+              <MappingFragment StoreEntitySet="UserLog">
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="LogContent" ColumnName="LogContent" />
+                <ScalarProperty Name="UserRef" ColumnName="UserRef" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VanBanDis">
+            <EntityTypeMapping TypeName="MOfficeModel.VanBanDi">
+              <MappingFragment StoreEntitySet="VanBanDi">
+                <ScalarProperty Name="Mix" ColumnName="Mix" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="NguoiKy" ColumnName="NguoiKy" />
+                <ScalarProperty Name="TrichYeu" ColumnName="TrichYeu" />
+                <ScalarProperty Name="NgayBanHanh" ColumnName="NgayBanHanh" />
+                <ScalarProperty Name="SoKyHieu" ColumnName="SoKyHieu" />
+                <ScalarProperty Name="SoDi" ColumnName="SoDi" />
+                <ScalarProperty Name="CoQuanId" ColumnName="CoQuanId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoaiVanBanId" ColumnName="LoaiVanBanId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VanBanDenHuyens">
+            <EntityTypeMapping TypeName="MOfficeModel.VanBanDenHuyen">
+              <MappingFragment StoreEntitySet="VanBanDenHuyen">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="NguoiNhan" ColumnName="NguoiNhan" />
+                <ScalarProperty Name="TrichYeu" ColumnName="TrichYeu" />
+                <ScalarProperty Name="NgayBanHanh" ColumnName="NgayBanHanh" />
+                <ScalarProperty Name="SoKyHieu" ColumnName="SoKyHieu" />
+                <ScalarProperty Name="CoQuanId" ColumnName="CoQuanId" />
+                <ScalarProperty Name="SoDen" ColumnName="SoDen" />
+                <ScalarProperty Name="NgayDen" ColumnName="NgayDen" />
+                <ScalarProperty Name="LoaiVanBanId" ColumnName="LoaiVanBanId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VanBanDenTinhs">
+            <EntityTypeMapping TypeName="MOfficeModel.VanBanDenTinh">
+              <MappingFragment StoreEntitySet="VanBanDenTinh">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="NguoiNhan" ColumnName="NguoiNhan" />
+                <ScalarProperty Name="TrichYeu" ColumnName="TrichYeu" />
+                <ScalarProperty Name="NgayBanHanh" ColumnName="NgayBanHanh" />
+                <ScalarProperty Name="SoKyHieu" ColumnName="SoKyHieu" />
+                <ScalarProperty Name="CoQuanId" ColumnName="CoQuanId" />
+                <ScalarProperty Name="SoDen" ColumnName="SoDen" />
+                <ScalarProperty Name="NgayDen" ColumnName="NgayDen" />
+                <ScalarProperty Name="LoaiVanBanId" ColumnName="LoaiVanBanId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiTrichYeus">
+            <EntityTypeMapping TypeName="MOfficeModel.LoaiTrichYeu">
+              <MappingFragment StoreEntitySet="LoaiTrichYeu">
+                <ScalarProperty Name="TrichYeu" ColumnName="TrichYeu" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CanBoes">
+            <EntityTypeMapping TypeName="MOfficeModel.CanBo">
+              <MappingFragment StoreEntitySet="CanBo">
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

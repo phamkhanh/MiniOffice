@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="328bf2ef22f1461fa74e36288fdb1afa" Name="Diagram1">
+        <EntityTypeShape EntityType="MOfficeModel.CoQuan" Width="1.5" PointX="3.75" PointY="12.5" />
+        <EntityTypeShape EntityType="MOfficeModel.LoaiVanBan" Width="1.5" PointX="3.75" PointY="10" />
+        <EntityTypeShape EntityType="MOfficeModel.User" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="MOfficeModel.UserLog" Width="1.5" PointX="3" PointY="15.625" />
+        <EntityTypeShape EntityType="MOfficeModel.VanBanDi" Width="1.5" PointX="3" PointY="5.125" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDi_CoQuan" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDi_LoaiVanBan" />
+        <AssociationConnector Association="MOfficeModel.FK_UserLog_User" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDi_User" />
+        <EntityTypeShape EntityType="MOfficeModel.VanBanDenHuyen" Width="1.5" PointX="6" PointY="10.375" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDenHuyen_CoQuan" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDenHuyen_LoaiVanBan" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDenHuyen_User" />
+        <EntityTypeShape EntityType="MOfficeModel.VanBanDenTinh" Width="1.5" PointX="9" PointY="13.5" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDenTinh_CoQuan" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDenTinh_LoaiVanBan" />
+        <AssociationConnector Association="MOfficeModel.FK_VanBanDenTinh_User" />
+        <EntityTypeShape EntityType="MOfficeModel.LoaiTrichYeu" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MOfficeModel.CanBo" Width="1.5" PointX="3.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

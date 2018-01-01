@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{08D86CE1-9237-4E14-B868-51B0D05089F9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MOffice</RootNamespace>
+    <AssemblyName>MOffice</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CanBo.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CauHinhForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CauHinhForm.Designer.cs">
+      <DependentUpon>CauHinhForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AppContext.cs" />
+    <Compile Include="CoQuan.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhMucCanBoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhMucCanBoForm.Designer.cs">
+      <DependentUpon>DanhMucCanBoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DanhMucCoQuanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhMucCoQuanForm.Designer.cs">
+      <DependentUpon>DanhMucCoQuanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DanhMucLoaiTrichYeuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhMucLoaiTrichYeuForm.Designer.cs">
+      <DependentUpon>DanhMucLoaiTrichYeuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DanhMucLoaiVanBanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DanhMucLoaiVanBanForm.Designer.cs">
+      <DependentUpon>DanhMucLoaiVanBanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DoiMatKhauForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoiMatKhauForm.Designer.cs">
+      <DependentUpon>DoiMatKhauForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eTemplate\ThuMoiTmp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThuMoiTmp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eVanBanDi\VanBanDiEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eVanBanDi\VanBanDiEdit.Designer.cs">
+      <DependentUpon>VanBanDiEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eVanBanDi\VanBanDiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eVanBanDi\VanBanDiForm.Designer.cs">
+      <DependentUpon>VanBanDiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eVanBanDi\VanBanDiReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eVanBanDi\VanBanDiReport.Designer.cs">
+      <DependentUpon>VanBanDiReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoaiTrichYeu.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoaiVanBan.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MOfficeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOfficeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MOfficeEdm.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOfficeEdm.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MOfficeEdm.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MOfficeEdm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MOfficeEdm.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanLyNguoiDungForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyNguoiDungForm.Designer.cs">
+      <DependentUpon>QuanLyNguoiDungForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SoVanBanDenTinhEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SoVanBanDenTinhEditForm.Designer.cs">
+      <DependentUpon>SoVanBanDenTinhEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SoVanBanDenTinhForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SoVanBanDenTinhForm.Designer.cs">
+      <DependentUpon>SoVanBanDenTinhForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SoVanBanDenTinhReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SoVanBanDenTinhReport.Designer.cs">
+      <DependentUpon>SoVanBanDenTinhReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TienIchThoMoiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TienIchThoMoiForm.Designer.cs">
+      <DependentUpon>TienIchThoMoiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TuyChinhForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TuyChinhForm.Designer.cs">
+      <DependentUpon>TuyChinhForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLog.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VanBanDenHuyen.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eVanBanDenHuyen\SoVanBanDenHuyenEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eVanBanDenHuyen\SoVanBanDenHuyenEdit.Designer.cs">
+      <DependentUpon>SoVanBanDenHuyenEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eVanBanDenHuyen\SoVanBanDenHuyenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eVanBanDenHuyen\SoVanBanDenHuyenForm.Designer.cs">
+      <DependentUpon>SoVanBanDenHuyenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eVanBanDenHuyen\SoVanBanDenHuyenReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eVanBanDenHuyen\SoVanBanDenHuyenReport.Designer.cs">
+      <DependentUpon>SoVanBanDenHuyenReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VanBanDenTinh.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VanBanDi.cs">
+      <DependentUpon>MOfficeEdm.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CauHinhForm.resx">
+      <DependentUpon>CauHinhForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhMucCanBoForm.resx">
+      <DependentUpon>DanhMucCanBoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhMucCoQuanForm.resx">
+      <DependentUpon>DanhMucCoQuanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhMucLoaiTrichYeuForm.resx">
+      <DependentUpon>DanhMucLoaiTrichYeuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DanhMucLoaiVanBanForm.resx">
+      <DependentUpon>DanhMucLoaiVanBanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoiMatKhauForm.resx">
+      <DependentUpon>DoiMatKhauForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eVanBanDi\VanBanDiReportView.rdlc" />
+    <EmbeddedResource Include="eVanBanDi\VanBanDiEdit.resx">
+      <DependentUpon>VanBanDiEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eVanBanDi\VanBanDiForm.resx">
+      <DependentUpon>VanBanDiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eVanBanDi\VanBanDiReport.resx">
+      <DependentUpon>VanBanDiReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="QuanLyNguoiDungForm.resx">
+      <DependentUpon>QuanLyNguoiDungForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportViewSoVanBanDenTinh.rdlc" />
+    <EmbeddedResource Include="Report\ReportViewSoVanBanDenHuyen.rdlc" />
+    <EmbeddedResource Include="SoVanBanDenTinhEditForm.resx">
+      <DependentUpon>SoVanBanDenTinhEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SoVanBanDenTinhForm.resx">
+      <DependentUpon>SoVanBanDenTinhForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SoVanBanDenTinhReport.resx">
+      <DependentUpon>SoVanBanDenTinhReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eVanBanDenHuyen\SoVanBanDenHuyenEdit.resx">
+      <DependentUpon>SoVanBanDenHuyenEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eVanBanDenHuyen\SoVanBanDenHuyenForm.resx">
+      <DependentUpon>SoVanBanDenHuyenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eVanBanDenHuyen\SoVanBanDenHuyenReport.resx">
+      <DependentUpon>SoVanBanDenHuyenReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TienIchThoMoiForm.resx">
+      <DependentUpon>TienIchThoMoiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TuyChinhForm.resx">
+      <DependentUpon>TuyChinhForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="MOfficeEdm.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MOfficeEdm.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MOfficeDataSet.xsc">
+      <DependentUpon>MOfficeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MOfficeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MOfficeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MOfficeDataSet.xss">
+      <DependentUpon>MOfficeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MOfficeEdm.edmx.diagram">
+      <DependentUpon>MOfficeEdm.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\CanBo.datasource" />
+    <None Include="Properties\DataSources\CoQuan.datasource" />
+    <None Include="Properties\DataSources\LoaiTrichYeu.datasource" />
+    <None Include="Properties\DataSources\LoaiVanBan.datasource" />
+    <None Include="Properties\DataSources\MOfficeEntities.datasource" />
+    <None Include="Properties\DataSources\User.datasource" />
+    <None Include="Properties\DataSources\UserLog.datasource" />
+    <None Include="Properties\DataSources\VanBanDen.datasource" />
+    <None Include="Properties\DataSources\VanBanDenFile.datasource" />
+    <None Include="Properties\DataSources\VanBanDenHuyen.datasource" />
+    <None Include="Properties\DataSources\VanBanDenHuyenFile.datasource" />
+    <None Include="Properties\DataSources\VanBanDenTinh.datasource" />
+    <None Include="Properties\DataSources\VanBanDi.datasource" />
+    <None Include="Properties\DataSources\VanBanDiFile.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eTemplate\ThuMoiTmp.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ThuMoiTmp.cs</LastGenOutput>
+    </Content>
+    <Content Include="icon.ico" />
+    <Content Include="MOfficeEdm.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MOfficeEdm.edmx</DependentUpon>
+      <LastGenOutput>MOfficeEdm.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MOfficeEdm.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MOfficeEdm.edmx</DependentUpon>
+      <LastGenOutput>MOfficeEdm.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MOffice.Helper\MOffice.Helper.csproj">
+      <Project>{7700443f-7ea7-4f25-8866-bc0daf067895}</Project>
+      <Name>MOffice.Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
